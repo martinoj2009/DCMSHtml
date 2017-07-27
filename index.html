@@ -1,0 +1,62 @@
+---
+---
+<title> Martino Jones</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/dojo/1.10.4/dojo/dojo.js" data-dojo-config="async: true, parseOnLoad: true"></script>
+
+
+<link rel="stylesheet" href="css/blog.css">
+
+
+{% include nav.html %}
+
+<header class="main-header no-cover">
+
+<div id="alerts">
+    </div>
+
+    <nav class="main-nav overlay clearfix">
+    </nav>
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">{{ site.title }}</h1>
+            <h2 class="page-description">{{ site.slogan }}</h2>
+        </div>
+    </div>
+
+</header>
+
+<body>
+
+    <div>
+        <noscript>
+            <h2>
+                <p> ERROR! This site requires JavaScript enabled. This site is a web application! </p>
+            </h2>
+        </noscript>
+        <div class="container">
+            <div id="articles" name="articles" class="list-group">
+
+            </div>
+            <nav aria-label="...">
+                <ul class="pagination pagination-sm">
+                    <li id="previous-class" class="page-item disabled">
+                        <a id="previous-button" class="page-link" href="" tabindex="-1">Previous</a>
+                    </li>
+
+                    <li id="next-class" class="page-item">
+                        <a id="next-button" class="page-link" href="">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<!-- Update the page content -->
+<script src="js/front.js"></script>

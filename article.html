@@ -1,0 +1,113 @@
+<title> Martino Jones</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="https://martinojones.com/blog.css">
+
+{% include nav.html %}
+
+
+<body>
+
+    <!-- Page Content -->
+    <div class="jumbotron">
+        <section class="primary" id="portfolio">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Blog Post Content Column -->
+                    <div class="col-lg-8 col-centered">
+
+                        <!-- Header -->
+
+                        <header class="main-header no-cover">
+                            <div class="vertical">
+                                <div class="main-header-content inner">
+                                    <h1 name="post-title" class="page-title">TITLE</h1>
+
+                                </div>
+                            </div>
+
+                          <hr>
+
+                          <!-- Share buttons -->
+                          <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                            <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                            <a class="a2a_button_facebook"></a>
+                            <a class="a2a_button_twitter"></a>
+                            <a class="a2a_button_google_plus"></a>
+                            <a class="a2a_button_tumblr"></a>
+                        </div>
+                        <script async src="https://static.addtoany.com/menu/page.js"></script>
+                        <!-- AddToAny END -->
+
+                        <!-- Date/Time -->
+                        <p><span name="time" class="glyphicon glyphicon-time">TIME</span></p>
+                        <div name="post-text" class="post-text">TEXT</div>
+                    </header>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+
+<p>
+
+</p>
+
+<!-- Update the page content -->
+<script>
+function draw()
+{
+    var title = document.getElementsByName("post-title");
+    var text = document.getElementsByName("post-text");
+    var time = document.getElementsByName("time");
+    title[0].innerText = "LOADING";
+    text[0].innerText = "LOADING";
+    time[0].innerText = "LOADING";
+    var response = JSON.parse(xhttp.responseText);
+    
+    if(response.length === 0)
+    {
+        window.location = "https://martinojones.com/notfound.html";
+    }
+
+    document.title = "Martino Jones - " + response[0].post_title;
+
+    title[0].innerText = response[0].post_title;
+    text[0].innerText = response[0].post_text;
+    time[0].innerText = response[0].post_date;
+/*
+    for(var i = 0; i < response.length; i++)
+    {
+        if(response[0].post_title === undefined)
+        {
+            console.log(response.length);
+        }
+        title[0].innerText = response[0].post_title;
+        text[0].innerText = response[0].post_text;
+        time[0].innerText = response[0].post_date;
+    }
+*/
+};
+
+var id = location.search.split("id=")[1];
+
+var xhttp = new XMLHttpRequest();
+
+xhttp.onreadystatechange=function()
+{
+    if(this.readyState === 4)
+    {
+        console.log("Done loading.");
+        draw();
+    }
+};
+
+xhttp.open("GET", "https://martinojones.com/api/article/" + id, true);
+xhttp.setRequestHeader("Content-type", "application/json");
+xhttp.send();
+</script>
