@@ -26,31 +26,32 @@ require(
                 page = 0;
             }
             
-            xhr("api/articles/" + page, {
+            xhr("/api/articles/" + page, {
                 handleAs: "json"
             }).then(function (response) {
                 
                 if (response.length === 0) {
                     nextClass.className = "page-item disabled";
+                    
                 }
                 else {
                     nextClass.className = "page-item";
-                }
-                
-                for (var i = 0; i < response.length; i++) {
-                    var node = document.createElement("a");
-                    node.className = "list-group-item";
-                    node.href = 'https://martinojones.com/article.html?id=' + response[i].id;
+
+                    for (var i = 0; i < response.length; i++) {
+                        var node = document.createElement("a");
+                        node.className = "list-group-item";
+                        node.href = 'https://martinojones.com/article.html?id=' + response[i].id;
+                        
+                        title = document.createElement('h2');
+                        title.className = "list-group-item-heading";
+                        title.innerHTML = response[i].post_title;
+                        node.appendChild(title);
+                        
+                        document.getElementsByName("articles")[0].appendChild(node);
+                    }
                     
-                    title = document.createElement('h2');
-                    title.className = "list-group-item-heading";
-                    title.innerHTML = response[i].post_title;
-                    node.appendChild(title);
-                    
-                    document.getElementsByName("articles")[0].appendChild(node);
+                    console.log("Done getting articles and displaying page " + page);
                 }
-                
-                console.log("Done getting articles and displaying page " + page);
                 
             }, function (err) {
                 console.log(err);
@@ -59,7 +60,7 @@ require(
         }
         
         function getAlerts() {
-            xhr("api/alerts", {
+            xhr("/api/alerts", {
                 handleAs: "json"
             }).then(function (response) {
                 if(response.length === 1)
